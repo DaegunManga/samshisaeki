@@ -1,0 +1,106 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: gold;
+  color: black;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+nav {
+  flex: 1;
+  background: #ccc;
+  padding: 20px;
+}
+
+.container {
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+  gap: 10px;
+}
+
+.card {
+  flex: 1 1 35rem;
+  background-color: white;
+  min-height: 40vh;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.card h1 {
+  font-size: calc(2rem + 1.5vw);
+  margin-bottom: 20px;
+}
+
+@media all and (max-width: 1024px) and (min-width: 728px) {
+  .card {
+    font-size: calc(2rem + 2vw);
+    flex: 1 1 30rem;
+  }
+}
+
+@media all and (max-width: 728px) and (min-width: 414px) {
+  .card {
+    font-size: calc(2rem + 2.5vw);
+    flex: 1 1 25rem;
+  }
+}
+
+@media all and (max-width: 414px) {
+  .card {
+    font-size: calc(2rem + 3vw);
+    flex: 1 1 38rem;
+  }
+}
+
+.modal {
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: none;
+
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal_body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  width: 20vw;
+  height: 40vh;
+
+  padding: 5rem;
+
+  text-align: center;
+
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+  transform: translateX(-50%) translateY(-50%);
+}
