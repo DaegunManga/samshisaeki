@@ -23,4 +23,3 @@ def getMenu():
                         index += 1
 
     return json.dumps(menuList, ensure_ascii=False)
-print(getMenu())
