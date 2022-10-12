@@ -4,7 +4,11 @@ import styled from 'styled-components';
 import userAtom from '../../atom/user';
 import Button from './Button';
 
-export default function Navbar() {
+interface NavbarProps {
+  bgColor?: string;
+}
+
+export default function Navbar({ bgColor }: NavbarProps) {
   const user = useRecoilValue(userAtom);
 
   const buttonProps = useMemo(
@@ -16,7 +20,7 @@ export default function Navbar() {
   );
 
   return (
-    <Provider>
+    <Provider bgColor={bgColor}>
       <ItemProvider>
         <Button {...buttonProps}></Button>
       </ItemProvider>
@@ -24,10 +28,10 @@ export default function Navbar() {
   );
 }
 
-const Provider = styled.div`
+const Provider = styled.div<NavbarProps>`
   position: sticky;
   padding: 1.25rem 2.25rem;
-  background: #ffb341;
+  background: ${(props) => props.bgColor || '#ffb341'};
 `;
 
 const ItemProvider = styled.div`
