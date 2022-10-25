@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px solid black;
+      }
+
+      .box {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        border: 2px solid gold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+    <button class="btn">식사데이터 가져오기</button>
+
+    <script>
+      const container = document.querySelector(".container");
+      const btn = document.querySelector(".btn");
+      const url = "http://localhost:3000/samshiseaki/meal";
+
+      const meals = [];
+
+      btn.addEventListener("click", loadData);
+
+      function loadData() {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => visulizeData(data.meals));
+      }
+
+      function visulizeData(meals) {
+        meals.forEach((meal) => {
+          const div = document.createElement("div");
+          const span = document.createElement("span");
+          const ul = document.createElement("ul");
+
+          span.innerHTML = meal.date;
+
+          div.appendChild(span);
+          div.appendChild(ul);
+
+          meal.menu.forEach((m) => {
+            const li = document.createElement("li");
+            li.innerHTML = m;
+            ul.append(li);
+          });
+
+          div.classList.add("box");
+          container.appendChild(div);
+        });
+      }
+    </script>
+  </body>
+</html>
