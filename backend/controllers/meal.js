@@ -26,7 +26,6 @@ const saveMeals = async (req, res, next) => {
 
 const loadMeals = async (req, res, next) => {
   try {
-    // 유사 Promise vs Promise
     const meals = await Meal.find({}).exec();
 
     res.header("Access-Control-Allow-Origin", "*");
