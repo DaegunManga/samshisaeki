@@ -1,21 +1,19 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import dateAtom from '../atom/date';
 import Navbar from '../components/Navbar';
 import DatePicker from '../components/DatePicker';
 import { SamshiSaeki } from '../icon/Icon';
 
 export default function Main() {
-  const date = useRecoilValue(dateAtom);
-
   return (
     <>
       <Navbar />
       <Provider>
         <ItemContainer>
           <Img src={SamshiSaeki} alt='SamshiSaeki' />
-          <DatePicker />
+          <PickerProvider>
+            <DatePicker />
+          </PickerProvider>
         </ItemContainer>
       </Provider>
     </>
@@ -23,6 +21,12 @@ export default function Main() {
 }
 
 const Img = styled.img``;
+
+const PickerProvider = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ItemContainer = styled.div`
   margin-top: 5rem;
