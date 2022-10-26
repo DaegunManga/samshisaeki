@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { dateSelector } from '../../atom/date';
@@ -25,8 +25,6 @@ export default function Cards() {
     [menus]
   );
 
-  useEffect(() => {}, []);
-
   return (
     <Wrapper>
       <Card
@@ -42,4 +40,18 @@ export default function Cards() {
   );
 }
 
-const Wrapper = styled.div``;
+export function LoadingCards() {
+  return (
+    <Wrapper>
+      <Card date={''} loading></Card>
+      <Card date={''} loading></Card>
+      <Card date={''} loading></Card>
+    </Wrapper>
+  );
+}
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: 2.5rem;
+  margin-bottom: 7rem;
+`;

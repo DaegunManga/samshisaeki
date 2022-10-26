@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import DatePicker from '../components/DatePicker';
 import { SamshiSaeki } from '../icon/Icon';
-import Cards from '../components/Cards';
+import Cards, { LoadingCards } from '../components/Cards';
+import Banner, { BannerTemplate } from '../components/Banner';
 
 export default function Main() {
   return (
@@ -15,10 +16,15 @@ export default function Main() {
           <PickerProvider>
             <DatePicker />
           </PickerProvider>
-          <React.Suspense fallback={<span>Loading ...</span>}>
+          <React.Suspense fallback={<LoadingCards />}>
             <Cards />
           </React.Suspense>
         </ItemContainer>
+        <React.Suspense
+          fallback={<BannerTemplate message='급식순서를 불러오고 있습니다' />}
+        >
+          <Banner />
+        </React.Suspense>
       </Provider>
     </>
   );
@@ -45,4 +51,5 @@ const Provider = styled.div`
   display: flex;
   justify-content: center;
   background: #ffb341;
+  flex-direction: column;
 `;
