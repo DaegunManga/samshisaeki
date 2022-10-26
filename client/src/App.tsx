@@ -1,3 +1,5 @@
+import 'react-datepicker/dist/react-datepicker.min.css';
+
 import React, { useMemo } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
