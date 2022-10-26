@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 import Client from '../lib/client';
 
 type WeekType = '월' | '화' | '수' | '목' | '금' | '토' | '일';
@@ -16,33 +16,55 @@ const mealAtom = atom<Meals[]>({
   default: [],
 });
 
+export const mealFilter = selectorFamily({
+  key: 'meals-sel-filter',
+  get:
+    (date: string) =>
+    ({ get }) => {
+      const meals = get(mealAtom);
+      const selectedMeal = meals.filter((m) => m.date === new Date(date));
+
+      return selectedMeal;
+    },
+});
+
 export const mealSelector = selector({
   key: 'meals-sel',
-  get: ({ get }) => get(mealAtom),
-  set: async ({ set }) => {
+  get: async ({ get }) => {
     const results = [];
 
     try {
-      const response = await Client.get('/meal');
+      const response = await Client.get('/samshiseaki/meal');
 
-      const { meals } = response.data;
+      const { meals } = JSON.parse(response.data);
 
-      for (const meal in meals) {
-        const [date, time] = ((meal as any).date as string).split(' ') as [
+      for (const meal of meals) {
+        const jmeal = meal;
+
+        const [d, time] = (jmeal.date as string).split(' ') as [
           string,
           TimeType
         ];
 
-        const meal: Meals = {
+        const menu = jmeal.menu as string[];
+        const dates = d.split('.');
+        const date = new Date(`2022.${dates[0]}.${dates[1]}`);
+        const week = dates[2] as WeekType;
+
+        const m: Meals = {
           date,
           week,
           time,
           menu,
         };
+
+        results.push(m);
       }
     } catch (err) {
       console.error(err);
     }
+
+    return results;
   },
 });
 

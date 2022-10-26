@@ -6,10 +6,10 @@ export default class Client {
   });
 
   static get(url: string, option?: AxiosRequestConfig) {
-    return this.client.get(url, option);
+    return Client.client.get(url, option);
   }
 
   static post(url: string, payload?: any, option?: AxiosRequestConfig) {
-    return this.client.post(url, payload, option);
+    return Client.client.post(url, payload, option);
   }
 }

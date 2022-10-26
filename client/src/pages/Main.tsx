@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Navbar from '../components/Navbar';
 import DatePicker from '../components/DatePicker';
 import { SamshiSaeki } from '../icon/Icon';
+import Cards from '../components/Cards';
 
 export default function Main() {
   return (
@@ -14,6 +15,9 @@ export default function Main() {
           <PickerProvider>
             <DatePicker />
           </PickerProvider>
+          <React.Suspense fallback={<span>Loading ...</span>}>
+            <Cards />
+          </React.Suspense>
         </ItemContainer>
       </Provider>
     </>
