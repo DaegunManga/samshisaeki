@@ -1,4 +1,4 @@
-import { Axios, AxiosRequestConfig } from "axios";
+import { Axios, AxiosRequestConfig } from 'axios';
 
 export default class Client {
   private static client = new Axios({
@@ -6,10 +6,10 @@ export default class Client {
   });
 
   static get(url: string, option?: AxiosRequestConfig) {
-    Client.client.get(url, option);
+    return this.client.get(url, option);
   }
 
   static post(url: string, payload?: any, option?: AxiosRequestConfig) {
-    this.client.post(url, payload, option);
+    return this.client.post(url, payload, option);
   }
 }
