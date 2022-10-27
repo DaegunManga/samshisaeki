@@ -12,7 +12,7 @@ interface ModalAtom {
 const modalAtom = atom<ModalAtom>({
   key: 'modal',
   default: {
-    isOpened: true,
+    isOpened: false,
     type: 'login',
   },
 });
