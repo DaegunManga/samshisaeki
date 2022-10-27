@@ -7,7 +7,7 @@ const mealTime = async (req, res, next) => {
 
     const curTime = moment().milliseconds("0");
     const breakfastStart = moment().hours("06").minutes("50").seconds("00");
-    const breakfastEnd = moment().hours("07").minutes("30").seconds("00");
+    const breakfastEnd = moment().hours("07").minutes("50").seconds("00");
     const lunchStart = moment().hours("12").minutes("20").seconds("00");
     const lunchEnd = moment().hours("13").minutes("05").seconds("00");
     const dinnerStart = moment().hours("18").minutes("20").seconds("00");
@@ -22,7 +22,7 @@ const mealTime = async (req, res, next) => {
       gradeTime(res, curTime, lunchStart, lunchEnd, "Lunch");
     }
     if (curTime.isBetween(dinnerStart, dinnerEnd)) {
-      gradeTime(res, curTime, testStart, testEnd, "Dinner");
+      gradeTime(res, curTime, dinnerStart, dinnerEnd, "Dinner");
     } else {
       return res.status(200).json({
         ok: true,
@@ -36,14 +36,21 @@ const mealTime = async (req, res, next) => {
 
 const gradeTime = (res, cur, start, end, time) => {
   try {
-    if (cur.diff(start, "minutes") <= 20) {
+    const duringMeal = 0;
+    if (time == "Breakfast") {
+      duringMeal = 20;
+    } else {
+      duringMeal = 15;
+    }
+
+    if (cur.diff(start, "minutes") <= duringMeal) {
       return res.status(200).json({
         ok: true,
         grade: "3rd",
         time: time,
       });
     }
-    if (end.diff(cur, "minutes") <= 20) {
+    if (end.diff(cur, "minutes") <= duringMeal) {
       return res.status(200).json({
         ok: true,
         grade: "1st",
