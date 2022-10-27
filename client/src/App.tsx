@@ -11,6 +11,7 @@ import GlobalStyles from './lib/globalStyles';
 import { useRecoilValue } from 'recoil';
 import userAtom from './atom/user';
 import AdminPrivateRoute from './pages/Admin';
+import { Helmet } from 'react-helmet-async';
 
 export default function App() {
   const user = useRecoilValue(userAtom);
@@ -18,6 +19,9 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <Helmet>
+        <title>대건세끼</title>
+      </Helmet>
       <GlobalStyles />
       <Routes>
         <Route path='/' element={<Main />} />
