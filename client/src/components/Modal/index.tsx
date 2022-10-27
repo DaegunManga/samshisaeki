@@ -10,8 +10,13 @@ export default function Modal({ children }: ModalProps) {
 }
 
 const Background = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
   display: flex;
-  width: 100%:
-  height: 100%;
   background: rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
 `;

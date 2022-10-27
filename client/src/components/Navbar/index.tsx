@@ -15,7 +15,7 @@ export default function Navbar({ bgColor }: NavbarProps) {
     () =>
       user.isLoggedIn
         ? { value: '관리자 페이지', to: '/admin' }
-        : { value: '로그인', to: '/login' },
+        : { value: '로그인' },
     [user]
   );
 

@@ -1,20 +1,29 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import modalAtom from '../../atom/modal';
 
 interface ButtonProps {
   value: string;
-  to: string;
+  to?: string;
 }
 
 export default function Button({ value, to }: ButtonProps) {
   const navigate = useNavigate();
+  const setModal = useSetRecoilState(modalAtom);
 
   const onButtonClick = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      navigate(to);
+      if (to) {
+        return navigate(to);
+      }
+      setModal({
+        isOpened: true,
+        type: 'login',
+      });
     },
-    [navigate, to]
+    [navigate, to, setModal]
   );
 
   return <ButtonEl onClick={onButtonClick}>{value}</ButtonEl>;

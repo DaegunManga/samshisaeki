@@ -1,9 +1,22 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import modalAtom from '../../atom/modal';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 export default function LoginForm() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const setModal = useSetRecoilState(modalAtom);
+
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useOnClickOutside(formRef, () => {
+    setModal({
+      isOpened: false,
+      type: 'login',
+    });
+  });
 
   const onChangeId: React.ChangeEventHandler<HTMLInputElement> = useCallback(
     (e) => setId(e.currentTarget.value),
@@ -12,16 +25,12 @@ export default function LoginForm() {
   const onChangePassword: React.ChangeEventHandler<HTMLInputElement> =
     useCallback((e) => setPassword(e.currentTarget.value), [setPassword]);
 
-  const onSubmitForm: React.MouseEventHandler<HTMLButtonElement> = useCallback(
-    (e) => {
-      e.preventDefault();
-    },
-    []
-  );
+  const onSubmitForm: React.FormEventHandler = useCallback((e) => {
+    e.preventDefault();
+  }, []);
 
   return (
-    <Provider>
-      <Title>로그인</Title>
+    <Provider onSubmit={onSubmitForm} ref={formRef}>
       <Input placeholder='아이디' value={id} onChange={onChangeId} />
       <Input
         type='password'
@@ -29,18 +38,10 @@ export default function LoginForm() {
         value={password}
         onChange={onChangePassword}
       />
-      <Button type='submit' onChange={onSubmitForm}>
-        로그인
-      </Button>
+      <Button type='submit'>로그인</Button>
     </Provider>
   );
 }
-
-const Title = styled.h1`
-  text-align: center;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-`;
 
 const Button = styled.button`
   background: #12b886;
@@ -49,16 +50,20 @@ const Button = styled.button`
   font-size: 1rem;
   color: white;
   border-radius: 5px;
-  font-weight: bold;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    background: rgba(18, 184, 134, 0.8);
+  }
 `;
 
 const Input = styled.input`
   margin-bottom: 1rem;
   color: black;
   font-size: 1rem;
-  border: none;
-  padding: 0.5rem 0 0.5rem 0.3rem;
-  border-radius: 5px;
+  border: 1px solid #f0f0f0;
+  padding: 0.5rem 0 0.5rem 0.75rem;
+  outline: none;
 `;
 
 const Provider = styled.form`
@@ -66,5 +71,6 @@ const Provider = styled.form`
   width: 15rem;
   padding: 3rem;
   flex-direction: column;
-  background: #f5f5f5;
+  background: #fff;
+  border-radius: 5px;
 `;

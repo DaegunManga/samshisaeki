@@ -6,6 +6,6 @@ interface PortalProps {
 }
 
 export default function Portal({ children }: PortalProps) {
-  const el = document.getElementById('modal') as HTMLElement;
+  const el = document.getElementById('portal') as HTMLElement;
   return reactDom.createPortal(children, el);
 }
