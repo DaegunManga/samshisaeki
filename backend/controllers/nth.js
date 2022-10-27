@@ -36,7 +36,7 @@ const mealTime = async (req, res, next) => {
 
 const gradeTime = (res, cur, start, end, time) => {
   try {
-    const duringMeal = 0;
+    let duringMeal = 0;
     if (time == "Breakfast") {
       duringMeal = 20;
     } else {
