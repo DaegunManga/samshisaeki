@@ -52,4 +52,5 @@ const Provider = styled.div`
   justify-content: center;
   background: #ffb341;
   flex-direction: column;
+  x-overflow: none;
 `;

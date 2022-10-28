@@ -3,13 +3,11 @@ import { useRecoilValue } from 'recoil';
 import modalAtom from './atom/modal';
 import LoginForm from './components/LoginForm';
 import Modal from './components/Modal';
-import useScrollLock from './hooks/useScrollLock';
+import RegisterForm from './components/RegisterForm';
 import Portal from './Portal';
 
 export default function ModalRender() {
   const modal = useRecoilValue(modalAtom);
-
-  useScrollLock();
 
   if (!modal.isOpened) {
     return <></>;
@@ -17,7 +15,9 @@ export default function ModalRender() {
 
   return (
     <Portal>
-      <Modal>{modal.type === 'login' ? <LoginForm /> : <></>}</Modal>
+      <Modal>
+        {modal.type === 'login' ? <LoginForm /> : <RegisterForm></RegisterForm>}
+      </Modal>
     </Portal>
   );
 }

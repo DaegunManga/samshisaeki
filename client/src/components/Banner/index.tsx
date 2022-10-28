@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { nthSelector } from '../../atom/nth';
@@ -10,10 +11,18 @@ export default function Banner() {
 }
 
 export function BannerTemplate({ message }: { message: string }) {
+  const navigate = useNavigate();
+
+  const onClickButton: React.MouseEventHandler = (e) => {
+    e.preventDefault();
+
+    navigate('/alarm');
+  };
+
   return (
     <Wrapper>
       <Message>{message}</Message>
-      <Button>알림톡으로 알림받기</Button>
+      <Button onClick={onClickButton}>알림톡으로 알림받기</Button>
     </Wrapper>
   );
 }
