@@ -5,7 +5,7 @@ export const nthSelector = selector({
   key: 'nth-sel',
   get: async () => {
     try {
-      const response = await Client.post('/samshiseaki/nth');
+      const response = await Client.get('/samshiseaki/nth');
 
       const { msg }: { msg: string } = JSON.parse(response.data);
 
