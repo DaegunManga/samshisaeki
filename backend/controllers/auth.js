@@ -67,6 +67,7 @@ const login = async (req, res) => {
         msg: "이메일과 패스워드가 일치하는지 확인하고 다시 입력하세요.",
       });
     }
+    user = await User.findOne({ email });
 
     const token = await generateJWT(user.id, user.name);
 
