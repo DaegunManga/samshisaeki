@@ -1,10 +1,83 @@
+const bcrypt = require("bcryptjs");
 const User = require("../models/User");
-const mongoose = require("mongoose");
+const generateJWT = require("../helpers/jwt");
 
-const register = async (req, res) => {};
-const login = async (req, res) => {};
+const register = async (req, res) => {
+  const { id, email, password } = req.body;
 
-module.exports = {
-  register,
-  login,
+  try {
+    let userEmail = await User.findOne({ email });
+    let userId = await User.findOne({ id });
+
+    if (userEmail) {
+      return res.status(400).json({
+        ok: false,
+        msg: "이미 등록된 이메일입니다",
+      });
+    }
+
+    if (userId) {
+      return res.status(400).json({
+        ok: false,
+        msg: "이미 등록된 아이디입니다",
+      });
+    }
+
+    user = new User(req.body);
+    // console.log("user: ", user);
+
+    const salt = bcrypt.genSaltSync(10);
+    user.password = bcrypt.hashSync(password, salt);
+
+    user = await user.save();
+
+    const token = await generateJWT(user.id, user.name);
+
+    return res.status(201).json({
+      ok: true,
+      user,
+      token,
+    });
+  } catch (err) {
+    console.log("Error: ", err);
+  }
 };
+
+const login = async (req, res) => {
+  const { id, email, password } = req.body;
+
+  try {
+    const userEmail = await User.findOne({ email });
+    const userId = await User.findOne({ id });
+    // console.log("user: ", user);
+
+    if (!userEmail || !userId) {
+      return res.status(404).json({
+        ok: false,
+        msg: "존재하지 않는 아이디나 이메일입니다. 회원가입 후 이용해주세요.",
+      });
+    }
+
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
+    console.log("isPasswordValid: ", isPasswordValid);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        ok: false,
+        msg: "이메일과 패스워드가 일치하는지 확인하고 다시 입력하세요.",
+      });
+    }
+
+    const token = await generateJWT(user.id, user.name);
+
+    return res.status(200).json({
+      ok: true,
+      user,
+      token,
+    });
+  } catch (err) {
+    console.log("err: ", err);
+  }
+};
+
+module.exports = { register, login };
