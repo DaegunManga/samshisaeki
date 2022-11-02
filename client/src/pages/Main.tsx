@@ -12,7 +12,12 @@ export default function Main() {
       <Navbar />
       <Provider>
         <ItemContainer>
-          <Img src={SamshiSaeki} alt='SamshiSaeki' />
+          <Img
+            src={SamshiSaeki}
+            width='638px'
+            height='223px'
+            alt='SamshiSaeki'
+          />
           <PickerProvider>
             <DatePicker />
           </PickerProvider>
