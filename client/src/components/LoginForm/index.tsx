@@ -1,9 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import modalAtom from '../../atom/modal';
+import useAuthUser from '../../hooks/useAuthUser';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 export default function LoginForm() {
@@ -12,6 +12,7 @@ export default function LoginForm() {
   const [idError, setIdError] = useState(false);
   const [pwError, setPwError] = useState(false);
   const setModal = useSetRecoilState(modalAtom);
+  const { loginUser } = useAuthUser();
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -39,29 +40,34 @@ export default function LoginForm() {
     );
 
   const onSubmitForm: React.FormEventHandler = useCallback(
-    (e) => {
-      e.preventDefault();
+    async (e) => {
+      try {
+        e.preventDefault();
 
-      if (id === '') {
-        setIdError(true);
-        toast.error('아이디를 입력해주세요');
-        return;
-      }
-      if (password === '') {
-        setPwError(true);
-        toast.error('비밀번호를 입력해주세요');
-        return;
-      }
+        if (id === '') {
+          setIdError(true);
+          toast.error('아이디를 입력해주세요');
+          return;
+        }
+        if (password === '') {
+          setPwError(true);
+          toast.error('비밀번호를 입력해주세요');
+          return;
+        }
 
-      toast.error('로그인에 실패했습니다');
+        await loginUser({ password, email: id, username: id });
+      } catch (err) {
+        toast.error('로그인 중 오류가 발생했습니다');
+        console.error(err);
+      }
     },
-    [id, password, setIdError, setPwError]
+    [id, password, setIdError, setPwError, loginUser]
   );
 
   const onClickToRegister: React.MouseEventHandler = (e) => {
     setModal({
-      isOpened: false,
-      type: 'login',
+      isOpened: true,
+      type: 'register',
     });
   };
 
@@ -83,17 +89,16 @@ export default function LoginForm() {
       <Button type='submit'>로그인</Button>
       <span>
         또는{' '}
-        <LinkToRegister to='/register' onClick={onClickToRegister}>
-          회원가입
-        </LinkToRegister>
+        <LinkToRegister onClick={onClickToRegister}>회원가입</LinkToRegister>
       </span>
     </Provider>
   );
 }
 
-const LinkToRegister = styled(Link)`
+const LinkToRegister = styled.span`
   color: #12b886;
   text-decoration: none;
+  cursor: pointer;
   &:hover {
     color: rgba(18, 184, 134, 0.8);
   }

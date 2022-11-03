@@ -1,4 +1,4 @@
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
 type UserAtomType = UserAtomLoggedIn | UserAtomNotLoggedIn;
 
@@ -14,13 +14,29 @@ interface UserAtomNotLoggedIn {
 interface User {
   username: string;
   nickname: string;
-  adminKey: string;
 }
 
 const userAtom = atom<UserAtomType>({
   key: 'user',
   default: {
     isLoggedIn: false,
+  },
+});
+
+export const userSelector = selector<User>({
+  key: 'user-sel',
+  get: () => {
+    return JSON.parse(localStorage.getItem('user') || '{}') as User;
+  },
+  set: ({ set }, newValue) => {
+    if (typeof newValue === 'object') {
+      localStorage.setItem('user', JSON.stringify(newValue));
+    }
+
+    set(userAtom, {
+      isLoggedIn: true,
+      user: newValue as User,
+    });
   },
 });
 
