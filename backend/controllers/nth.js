@@ -1,6 +1,6 @@
 const moment = require("moment-timezone");
 
-const mealTime = (req, res, next) => {
+const mealTime = async (req, res, next) => {
   try {
     moment.tz.setDefault("Asia/Seoul");
     res.header("Access-Control-Allow-Origin", "*");

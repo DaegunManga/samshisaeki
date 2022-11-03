@@ -49,9 +49,8 @@ const login = async (req, res) => {
   try {
     const userEmail = await User.findOne({ email });
     const userId = await User.findOne({ id });
-    // console.log("user: ", user);
-
-    if (!userEmail || !userId) {
+    const userExist = userEmail || userId;
+    if (!userExist) {
       return res.status(404).json({
         ok: false,
         msg: "존재하지 않는 아이디나 이메일입니다. 회원가입 후 이용해주세요.",
@@ -67,7 +66,8 @@ const login = async (req, res) => {
         msg: "이메일과 패스워드가 일치하는지 확인하고 다시 입력하세요.",
       });
     }
-    user = await User.findOne({ email });
+
+    user = await User.findOne({ password });
 
     const token = await generateJWT(user.id, user.name);
 
@@ -81,4 +81,29 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const getProfile = async (req, res, next) => {
+  const { id, name } = req.body;
+
+  try {
+    const user = await User.findById(id);
+
+    user.password = "";
+
+    res.status(200).json({
+      ok: true,
+      msg: "성공적으로 프로필을 불러왔습니다",
+      user,
+    });
+  } catch (err) {
+    res.status(403).json({
+      ok: false,
+      msg: "관리자에게 문의하세요.",
+    });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  getProfile,
+};

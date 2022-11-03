@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 
 const validateJWT = (req, res, next) => {
-  const token = req.header["x-token"];
+  const token = req["token"];
+  // console.log("token: ", token);
 
   if (!token) {
     return res.status(401).json({
@@ -14,8 +15,8 @@ const validateJWT = (req, res, next) => {
     const { id, name } = jwt.verify(token, process.env.JWT_SECRET_KEY);
     console.log("id: ", id, "name: ", name);
 
-    req.id = id;
-    req.name = name;
+    req.body.id = id;
+    req.body.name = name;
 
     next();
   } catch (err) {

@@ -3,7 +3,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 const logger = require("morgan");
 const dbConnection = require("./database/config");
-const websocket = require("websocket");
 
 const app = express();
 dbConnection();
@@ -18,24 +17,14 @@ app.use(logger("dev"));
 // run express
 app.use(express.json());
 
-//run websocket
-http.createServer(app).listen();
-
 // routers
 app.use("/samshiseaki/auth", require("./routes/auth"));
 app.use("/samshiseaki/meal", require("./routes/meal"));
 app.use("/samshiseaki/nth", require("./routes/nth"));
+app.use("/samshiseaki/teacher", require("./routes/teacher"));
 
 // listening port
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
-});
-
-var server = http.createServer(app).listen(3000, function () {
-  console.log("Express server listening");
-});
-
-var wsServer = new webSocketServer({
-  httpServer: server,
 });
