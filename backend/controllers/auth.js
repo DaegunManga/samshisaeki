@@ -67,7 +67,7 @@ const login = async (req, res) => {
       });
     }
 
-    user = await User.findOne({ password });
+    user = userExist;
 
     const token = await generateJWT(user.id, user.name);
 
