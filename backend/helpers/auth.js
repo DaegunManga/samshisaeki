@@ -1,5 +1,3 @@
-// legacy
-
 const emailExists = async (req, res, next) => {
   const { email } = req.body;
   const userExists = await User.findOne({ email });

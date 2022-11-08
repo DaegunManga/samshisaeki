@@ -97,7 +97,7 @@ const getProfile = async (req, res, next) => {
   } catch (err) {
     res.status(403).json({
       ok: false,
-      msg: "관리자에게 문의하세요.",
+      msg: "유효하지 않은 토큰입니다",
     });
   }
 };

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { generateJWT } = require("../helpers/jwt");
 
 const validateJWT = (req, res, next) => {
   const token = req["token"];
@@ -20,10 +21,14 @@ const validateJWT = (req, res, next) => {
 
     next();
   } catch (err) {
-    return res.status(401).json({
+    return res.status(205).json({
       ok: false,
-      msg: "유효하지 않은 토큰입니다.",
+      token: token,
     });
+    // return res.status(401).json({
+    //   ok: false,
+    //   msg: "유효하지 않은 토큰입니다.",
+    // });
   }
 };
 

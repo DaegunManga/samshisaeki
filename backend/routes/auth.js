@@ -18,7 +18,7 @@ router.post(
       min: 2,
       max: 32,
     }),
-    check("email", "유효한 이메일 혀앹로 입력해주세요").isEmail(),
+    check("email", "유효한 이메일 형태로 입력해주세요").isEmail(),
     check(
       "password",
       "비밀번호는 대문자, 소문자, 특수문자, 숫자를 최소 하나씩 조합해 8 ~ 32 글자로 만들어주세요"
