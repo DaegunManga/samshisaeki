@@ -57,6 +57,7 @@ const Provider = styled.div<{ isLoadingOrError?: boolean }>`
   border-radius: 10px;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
+  margin-bottom: 1.5rem;
   ${(props) =>
     props.isLoadingOrError &&
     'display: flex; justify-content: center; align-items: center;'}
