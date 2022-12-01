@@ -6,6 +6,7 @@ const moment = require("moment-timezone");
 const logger = require("morgan");
 const axios = require("axios");
 const dbConnection = require("./database/config");
+const { corsSetup } = require("./middlewares/cors");
 
 const app = express();
 dbConnection();
@@ -18,10 +19,12 @@ app.use(logger("dev"));
 // app.use(helmet());
 // app.use(cors);
 
+corsSetup(process.env.CORS_WHITELISTS);
+
 // run express
 app.use(express.json());
 
-//auto db
+//auto db refresh
 
 cron.schedule("0 0 * * 1", async () => {
   try {
