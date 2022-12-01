@@ -52,6 +52,8 @@ export function LoadingCards() {
 
 const Wrapper = styled.div`
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   margin-top: 2.5rem;
   margin-bottom: 7rem;
 `;

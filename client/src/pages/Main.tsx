@@ -12,12 +12,7 @@ export default function Main() {
       <Navbar />
       <Provider>
         <ItemContainer>
-          <Img
-            src={SamshiSaeki}
-            width='638px'
-            height='223px'
-            alt='SamshiSaeki'
-          />
+          <Img src={SamshiSaeki} width='638px' alt='SamshiSaeki' />
           <PickerProvider>
             <DatePicker />
           </PickerProvider>
@@ -35,7 +30,20 @@ export default function Main() {
   );
 }
 
-const Img = styled.img``;
+const Img = styled.img`
+  @media screen and (max-width: 780px) {
+    width: 550px;
+  }
+  @media screen and (max-width: 676px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 528px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 450px) {
+    width: 400px;
+  }
+`;
 
 const PickerProvider = styled.div`
   display: flex;

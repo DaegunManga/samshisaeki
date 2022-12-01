@@ -32,6 +32,9 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+  @media screen and (max-width: 528px) {
+    font-size: 0.9rem;
+  }
   font-weight: bold;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -43,6 +46,12 @@ const Button = styled.button`
 
 const Message = styled.h1`
   font-size: 2.5rem;
+  @media screen and (max-width: 528px) {
+    font-size: 2rem;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 1.75rem;
+  }
   font-weight: bold;
   margin-top: 11.25rem;
   margin-bottom: 7rem;
