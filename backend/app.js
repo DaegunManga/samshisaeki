@@ -23,6 +23,7 @@ corsSetup(process.env.CORS_WHITELISTS);
 
 // run express
 app.use(express.json());
+app.use("/static", express.static("static"));
 
 //auto db refresh
 
@@ -51,6 +52,7 @@ app.use("/samshiseaki/auth", require("./routes/auth"));
 app.use("/samshiseaki/meal", require("./routes/meal"));
 app.use("/samshiseaki/nth", require("./routes/nth"));
 app.use("/samshiseaki/teacher", require("./routes/teacher"));
+app.use("/samshiseaki/notice", require("./routes/notice"));
 
 // listening port
 const port = process.env.PORT || 3000;
