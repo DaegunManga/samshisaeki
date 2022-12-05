@@ -6,6 +6,8 @@ import reportWebVitals from './reportWebVitals';
 import { RecoilRoot } from 'recoil';
 import { HelmetProvider } from 'react-helmet-async';
 
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -16,5 +18,7 @@ root.render(
     </RecoilRoot>
   </HelmetProvider>
 );
+
+serviceWorkerRegistration.register();
 
 reportWebVitals();
