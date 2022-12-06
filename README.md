@@ -1,9 +1,9 @@
 # 대건세끼
 
-<center>
+<p align="center">
   <img src="img/logo.svg" width="185px" style="border-radius: 15px; margin-bottom: 1rem;" />
-  <p>대건고등학교 급식 식단 뷰어 및 순서 웹 푸시 서비스</p>
-</center>
+  <p align="center">대건고등학교 급식 식단 뷰어 및 순서 웹 푸시 서비스</p>
+</p>
 
 ## Server
 
