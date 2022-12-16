@@ -14,9 +14,9 @@ function corsSetup(whitelists) {
       if (whiltelist.indexOf(origin) !== -1) {
         cb(null, true);
       } else {
-        throw new CustomError({
-          type: ErrorType.FORBIDDEN,
-          message: "Not allowed access by cors",
+        res.status(403).json({
+          ok: false,
+          msg: "Not allowed access by cors",
         });
       }
     },
