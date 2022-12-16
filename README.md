@@ -9,6 +9,8 @@
 
 웹 서버 (책임자: [@권영준](https://github.com/LAPLACE4A))
 
+Published At: https://samshisaekibe.dgmanga.kr
+
 ### Stack
 
 - [X] Web Crawling - Python Beautiful soup 
@@ -39,6 +41,8 @@
 ## Client
 
 웹 클라이언트 (책임자: [@금정빈](https://github.com/lukekeum/))
+
+Published At: https://samshisaeki.dgmanga.kr
 
 ### Stack
 
