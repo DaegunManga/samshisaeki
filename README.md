@@ -5,11 +5,11 @@
   <p align="center">대건고등학교 급식 식단 뷰어 및 순서 웹 푸시 서비스</p>
 </p>
 
+Published At: https://samshisaeki.dgmanga.kr
+
 ## Server
 
 웹 서버 (책임자: [@권영준](https://github.com/LAPLACE4A))
-
-Published At: https://samshisaekibe.dgmanga.kr
 
 ### Stack
 
@@ -35,14 +35,19 @@ Published At: https://samshisaekibe.dgmanga.kr
 -  - #legacy : Express서버와 DB를 MySQL을 사용하던 개발 초창기 코드들 (Deprecated)
 -  - controllers : router에서 사용하는 각종 모듈들 모음
 -  - database : Mongo DB에 액세스하기위한 초기 설정 코드
--  - 
+-  - helpers : 회원가입 이메일 중복검사, 토큰생성, 식단 DB 캐싱 함수
+-  - middlewares : CORS, 토큰인증 같이 중간에서 데이터를 처리,인증 등을 거치고 다음으로 넘겨주는 함수들 모음
+-  - models : MongoDB 데이터베이스 구조 스키마 모음
+-  - routes : 클라이언트의 요청을 받는 엔드포인트에 대한 라우팅 코드 모음
+-  - static : 정적파일(로고 svg파일)
 
+## Repository
+
+- [X] Automated publish powered by heroku (session expired)
 
 ## Client
 
 웹 클라이언트 (책임자: [@금정빈](https://github.com/lukekeum/))
-
-Published At: https://samshisaeki.dgmanga.kr
 
 ### Stack
 
