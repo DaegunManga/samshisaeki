@@ -27,6 +27,8 @@ Published At: https://samshisaeki.dgmanga.kr
 - Express.js를 활용해 Server API를 RESTful API 규격에 맞추어 작성
 - Client로 API를 사용해 요청에 대한 급식메뉴, 급식 순서, 회원가입, 로그인, 웹푸시를
   Token(JSON Web Token)을 이용한 인증을 거쳐 응답함으로써 안전한 요청과 응답
+- MongoDB를 활용한 급식메뉴 캐싱, 회원가입 관리
+- cron과 axios을 통해 API를 활용해서 "웹크롤링 -> DB 삭제 -> DB 업데이트"과정을 자동화 
 - web-push로 시간에 맞추어 Client에게 알람(급식 순서) 보내는 요청 보내기
 
 ### Folder Structure
