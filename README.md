@@ -20,7 +20,7 @@ Published At: https://samshisaeki.dgmanga.kr
 - [X] Crawling Data (meun) caching - Mongo DB
 - [X] Automate scheduled DB delete & update - by cron
 - [X] JSON Web Token (JWT) Authentication - secured request & response
-- [X] web push alert
+- [X] Web push alert
 
 ### Feature
 
