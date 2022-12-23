@@ -59,7 +59,7 @@ Published At: https://samshisaeki.dgmanga.kr
 - [X] Reat Router Dom - Router management
 - [X] React Helmet - Modify html metadta
 - [X] React Datepicker - For Datepicker
-- [ ] ServiceWorkers (client) - For web push alert
+- [X] ServiceWorkers (client) - For web push alert
 
 ### Feature
 
