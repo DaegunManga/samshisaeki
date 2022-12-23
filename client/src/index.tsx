@@ -19,6 +19,6 @@ root.render(
   </HelmetProvider>
 );
 
-serviceWorkerRegistration.register();
+serviceWorkerRegistration.register({});
 
 reportWebVitals();

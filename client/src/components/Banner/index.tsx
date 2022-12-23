@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { nthSelector } from '../../atom/nth';
+import useSubscribeNoti from '../../hooks/useSubscribeNoti';
 
 export default function Banner() {
   const nthMsg = useRecoilValue(nthSelector);
@@ -11,12 +12,12 @@ export default function Banner() {
 }
 
 export function BannerTemplate({ message }: { message: string }) {
-  const navigate = useNavigate();
+  const { subscribe } = useSubscribeNoti();
 
-  const onClickButton: React.MouseEventHandler = (e) => {
+  const onClickButton: React.MouseEventHandler = async (e) => {
     e.preventDefault();
 
-    navigate('/alarm');
+    subscribe();
   };
 
   return (
