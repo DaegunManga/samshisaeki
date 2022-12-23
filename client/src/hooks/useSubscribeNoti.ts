@@ -53,10 +53,9 @@ export default function useSubscribeNoti() {
       toast.error('알림을 설정하는데 실패했어요');
     }
 
-    const response = await Client.post(
-      '/samshiseaki/notice/register',
-      instanceToPlain(subscription)
-    );
+    const response = await Client.post('/samshiseaki/notice/register', {
+      ...instanceToPlain(subscription),
+    });
 
     if (response.status === 200) {
       toast.success('알림이 설정되었어요! 급식 순서를 알림으로 알려드릴게요');
