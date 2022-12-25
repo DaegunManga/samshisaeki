@@ -5,7 +5,9 @@
   <p align="center">대건고등학교 급식 식단 뷰어 및 순서 웹 푸시 서비스</p>
 </p>
 
-Published At: https://samshisaeki.dgmanga.kr
+Published At 
+- Client: https://samshisaeki.vercel.app
+- Server: https://manga.lukekeum.me
 
 ## Server
 
