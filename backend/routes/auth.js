@@ -1,3 +1,5 @@
+// 회원가입 라우터(엔드포인트와 동작) / 필드에 입력된 정보 체크
+
 const { Router } = require("express");
 const { check } = require("express-validator");
 const { register, login, getProfile } = require("../controllers/auth");

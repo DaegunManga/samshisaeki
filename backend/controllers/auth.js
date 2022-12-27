@@ -1,3 +1,5 @@
+// 회원가입 로직
+
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const generateJWT = require("../helpers/jwt");
@@ -50,6 +52,8 @@ const login = async (req, res) => {
     const userEmail = await User.findOne({ email });
     const userId = await User.findOne({ id });
     const userExist = userEmail || userId;
+    const user = userExist;
+
     if (!userExist) {
       return res.status(404).json({
         ok: false,
@@ -66,8 +70,6 @@ const login = async (req, res) => {
         msg: "이메일과 패스워드가 일치하는지 확인하고 다시 입력하세요.",
       });
     }
-
-    user = userExist;
 
     const token = await generateJWT(user.id, user.name);
 

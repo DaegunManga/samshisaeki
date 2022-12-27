@@ -1,3 +1,5 @@
+// 식단정보 라우터(엔드포인트와 동작)
+
 const { Router } = require("express");
 const { saveMeals, loadMeals, deleteMeals } = require("../controllers/meal");
 const { fetchMeals } = require("../helpers/loader");

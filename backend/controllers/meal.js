@@ -1,3 +1,5 @@
+// 식단 정보 저장, 불러오기, 삭제 로직
+
 const Meal = require("../models/Meal");
 const mongoose = require("mongoose");
 
