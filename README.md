@@ -83,4 +83,4 @@ Published At
 
 ## Repository
 
-- [ ] Automated publish with github actions
+- [X] Automated publish with github actions (Client only)
