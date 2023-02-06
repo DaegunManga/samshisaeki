@@ -1,3 +1,5 @@
+// 유저 DB 스키마
+
 const { Schema, model } = require("mongoose");
 
 const UserSchema = Schema(

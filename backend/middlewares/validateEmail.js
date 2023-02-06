@@ -1,3 +1,5 @@
+// 선생님 이메일인지(허가 받은 이메일인지) 체크하는 로직
+
 const Teacher = require("../models/Teacher");
 
 const validateEmail = async (req, res, next) => {

@@ -1,3 +1,5 @@
+// JWT 토큰 발급
+
 const jwt = require("jsonwebtoken");
 
 const generateJWT = (id, name) => {

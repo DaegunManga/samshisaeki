@@ -1,3 +1,5 @@
+# 네이버 검색결과 창에서 식단정보 웹 크롤링
+
 import requests
 from bs4 import BeautifulSoup
 import json

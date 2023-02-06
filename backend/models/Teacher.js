@@ -1,3 +1,5 @@
+// 선생님 이메일 DB 스키마
+
 const { Schema, model } = require("mongoose");
 
 const TeacherSchema = Schema({

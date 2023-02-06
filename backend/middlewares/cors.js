@@ -1,3 +1,5 @@
+// CORS 인증
+
 function corsSetup(whitelists) {
   const whiltelist = whitelists.split(",");
   let corsOptions = {};

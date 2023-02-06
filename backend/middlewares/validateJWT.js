@@ -1,3 +1,5 @@
+// JWT 인증 로직
+
 const jwt = require("jsonwebtoken");
 const { generateJWT } = require("../helpers/jwt");
 

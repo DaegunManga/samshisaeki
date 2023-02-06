@@ -1,3 +1,5 @@
+// DB 연결 스크립트
+
 const mongoose = require("mongoose");
 require("dotenv").config();
 

@@ -1,3 +1,5 @@
+// web-push 신청, 알림전송 로직
+
 const {
   PushSubscription,
   sendNotification,

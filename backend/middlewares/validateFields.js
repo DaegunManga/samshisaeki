@@ -1,3 +1,5 @@
+// 라우터에서 필드 값에 에러 있었는지 체크하는 로직
+
 const { validationResult } = require("express-validator");
 
 const validateFields = (req, res, next) => {

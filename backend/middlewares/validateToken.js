@@ -1,3 +1,5 @@
+// 토큰 인증 로직
+
 const validateToken = (req, res, next) => {
   const bearerHeader = req.headers["token"];
   //   console.log(req.headers["authorization"]);

@@ -1,6 +1,6 @@
+// 서버 구동 메인 스크립ㅌ트
+
 const express = require("express");
-const helmet = require("helmet");
-const cors = require("cors");
 const cron = require("node-cron");
 const moment = require("moment-timezone");
 const logger = require("morgan");
@@ -14,18 +14,16 @@ moment.tz.setDefault("Asia/Seoul");
 
 require("dotenv").config();
 
-// 3rd Party Modules
+// 3rd Party Module
 app.use(logger("dev"));
-// app.use(helmet());
-// app.use(cors);
 
 corsSetup(process.env.CORS_WHITELISTS);
 
-// run express
+// express 실행
 app.use(express.json());
 app.use("/static", express.static("static"));
 
-//auto db refresh
+//DB 자동 업데이트 예약
 
 cron.schedule("0 0 * * 1", async () => {
   try {
@@ -54,7 +52,7 @@ app.use("/samshiseaki/nth", require("./routes/nth"));
 app.use("/samshiseaki/teacher", require("./routes/teacher"));
 app.use("/samshiseaki/notice", require("./routes/notice"));
 
-// listening port
+// 포트 정보
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

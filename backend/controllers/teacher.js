@@ -1,5 +1,6 @@
-const data = require("../database/teachers");
-const Teacher = require("../models/Teacher");
+// deactivated by security issue
+// const data = require("../database/teachers");
+// const Teacher = require("../models/Teacher");
 
 const createTeacher = async (req, res, next) => {
   try {

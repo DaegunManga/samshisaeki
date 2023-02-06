@@ -1,3 +1,5 @@
+// 식단 정보 DB 스키마
+
 const { Schema, model } = require("mongoose");
 
 const MealSchema = Schema(

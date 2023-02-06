@@ -1,3 +1,5 @@
+// 파이썬으로 크롤링한 정보 받아오는 스크립트
+
 const { spawn } = require("child_process");
 const iconv = require("iconv");
 

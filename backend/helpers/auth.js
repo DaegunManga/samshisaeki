@@ -1,3 +1,5 @@
+// 이메일 중복 체크
+
 const emailExists = async (req, res, next) => {
   const { email } = req.body;
   const userExists = await User.findOne({ email });
