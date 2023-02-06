@@ -25,7 +25,7 @@ app.use("/static", express.static("static"));
 
 //DB 자동 업데이트 예약
 
-cron.schedule("0 0 * * 1", async () => {
+cron.schedule("0 0 0 ? 1-12 MON", async () => {
   try {
     const deleteMeal = await axios.delete(`${process.env.API}/meal`);
     const updateMeal = await axios.post(`${process.env.API}/meal`);
