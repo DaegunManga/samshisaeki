@@ -49,7 +49,7 @@ export const mealSelector = selector({
         const menu = jmeal.menu as string[];
         const dates = d.split('.');
         const date = new Date(
-          new Date(`2022.${dates[0]}.${dates[1]}`).getTime() +
+          new Date(`2023.${dates[0]}.${dates[1]}`).getTime() +
             1000 * 60 * 60 * 24
         );
         const week = dates[2] as WeekType;
