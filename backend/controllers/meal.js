@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const saveMeals = async (req, res, next) => {
   try {
     const reqData = req.body;
+
+    console.log(req.data);
     let meals = [];
 
     reqData.forEach((meal) => {

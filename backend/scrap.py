@@ -1,4 +1,3 @@
-# 네이버 검색결과 창에서 식단정보 웹 크롤링
 
 import requests
 from bs4 import BeautifulSoup
@@ -26,7 +25,7 @@ def run():
             data['menu'] = menulist                
             list.append(data)
         
-        return (json.dumps(list, ensure_ascii=False))
+        return (json.dumps(list, ensure_ascii=False).encode('utf-8'))
 
 if __name__ == '__main__':
     print(run())

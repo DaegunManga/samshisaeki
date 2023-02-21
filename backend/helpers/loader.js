@@ -11,20 +11,18 @@ const fetchMeals = (req, res, next) => {
       const runCommand = spawn("python", ["scrap.py"]);
 
       runCommand.stdout.on("data", (data) => {
-        dataToSend = ic.convert(data).toString("utf-8");
-        dataToSend = JSON.parse(dataToSend);
+        dataToSend = JSON.parse(data.toString());
       });
 
       runCommand.on("close", (err) => {
+	req.body = dataToSend;
+	next();
         resolve(dataToSend);
       });
     } catch (err) {
       reject(err);
     }
-  }).then((data) => {
-    req.body = data;
-    next();
-  });
+  })
 };
 
 module.exports = {
