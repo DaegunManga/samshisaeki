@@ -25,7 +25,7 @@ app.use("/static", express.static("static"));
 
 //DB 자동 업데이트 예약
 
-cron.schedule("0 0 0 ? * MON", async () => {
+const updateDB = async () => {
   try {
     const deleteMeal = await axios.delete(`${process.env.API}/meal`);
     const updateMeal = await axios.post(`${process.env.API}/meal`);
@@ -36,14 +36,15 @@ cron.schedule("0 0 0 ? * MON", async () => {
 
     if (updateMeal.data.ok) {
       console.log(`
-식단 갱신 결과: ${updateMeal.data.meals.length}개
-식단 갱신 날짜: ${moment().format("YYYY-MM-DD")}
+  식단 갱신 결과: ${updateMeal.data.meals.length}개
+  식단 갱신 날짜: ${moment().format("YYYY-MM-DD")}
       `);
     }
   } catch (err) {
     console.log("Error: ", err);
   }
-});
+
+cron.schedule("0 0 0 ? * MON", updateDB);
 
 // routers
 app.use("/samshiseaki/auth", require("./routes/auth"));
@@ -54,6 +55,8 @@ app.use("/samshiseaki/notice", require("./routes/notice"));
 
 // 포트 정보
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Server is listening on port ${port}`);
+  
+  await updateDB();
 });
