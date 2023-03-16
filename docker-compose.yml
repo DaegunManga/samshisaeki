@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  server:
+    image: server
+    command: uvicorn app.main:app --host 0.0.0.0 --port 4000 --reload
+    ports:
+      - 4000:4000
+    volumes:
+      - ./server
+  backend:
+    image: backend
+    command: node app.js
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend
