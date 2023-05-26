@@ -1,3 +1,5 @@
+:no_entry: [DEPRECATED] Active at https://github.com/DaegunManga/samshisaeki-v2
+
 # 대건세끼
 
 <p align="center">
